@@ -19,26 +19,7 @@ def ordenavetoresaleatorios(vetores):
   for i in range(len(vetores)):
     vetoresordenados.append (ordenavetoraleatorio(vetores[i]))
   return vetoresordenados
-#CALCULO DA FUNCAO TSP, É UMA DAS CAIXAS QUE MUDA A CADA TIPO DE PROBLEMA
-def calculacustotsp(b,matriz_distancias):
-    custototal = 0
-    for i in range(len(b[0]) - 1):
-        lista = b[0]
-        L = matriz_distancias[lista[i]][lista[i + 1]]
-        custototal += L
-    custototal += matriz_distancias[lista[-1]][lista[0]]
-    return custototal
-#CALCULO DA FUNCAO TSP PARA VARIOS VETORES, É UMA DAS CAIXAS QUE MUDA A CADA TIPO DE PROBLEMA
-def calculacustotsp_variosvetores(vetoresordenados,matriz_distancias):
-    custos_totais = []
-    for b in vetoresordenados:
-        custototal = 0
-        lista = b[0]
-        for i in range(len(lista) - 1):
-            custototal += matriz_distancias[lista[i]][lista[i + 1]]
-        custototal += matriz_distancias[lista[-1]][lista[0]]
-        custos_totais.append(custototal)
-    return custos_totais
+
 #ORGANIZAMOS A POPULACAO b PARA QUE:
 #b[][0] é indices ordenados
 #b[][1] é vetor ordenado
@@ -119,3 +100,26 @@ def PopulandoNovaGeracao(MutantesOrdenados, bfilhos, elite_b):
         NovaGenPop.append(elite)
     return NovaGenPop
 
+###############DEPENDE DO PROBLEMA
+###############TSP
+#CALCULO DA FUNCAO TSP, É UMA DAS CAIXAS QUE MUDA A CADA TIPO DE PROBLEMA
+def calculacustotsp(b,matriz_distancias):
+    custototal = 0
+    for i in range(len(b[0]) - 1):
+        lista = b[0]
+        L = matriz_distancias[lista[i]][lista[i + 1]]
+        custototal += L
+    custototal += matriz_distancias[lista[-1]][lista[0]]
+    return custototal
+#CALCULO DA FUNCAO TSP PARA VARIOS VETORES, É UMA DAS CAIXAS QUE MUDA A CADA TIPO DE PROBLEMA
+def calculacustotsp_variosvetores(vetoresordenados,matriz_distancias):
+    custos_totais = []
+    for b in vetoresordenados:
+        custototal = 0
+        lista = b[0]
+        for i in range(len(lista) - 1):
+            custototal += matriz_distancias[lista[i]][lista[i + 1]]
+        custototal += matriz_distancias[lista[-1]][lista[0]]
+        custos_totais.append(custototal)
+    return custos_totais
+#########################
